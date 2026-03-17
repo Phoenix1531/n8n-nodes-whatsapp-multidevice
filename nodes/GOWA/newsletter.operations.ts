@@ -53,7 +53,7 @@ export const executeNewsletterOperation: OperationExecutor = async function (
 	operation: string,
 	itemIndex: number,
 ): Promise<any> {
-	const credentials = await this.getCredentials('goWhatsappApi');
+	const credentials = await this.getCredentials('goWhatsappApiMultiDevice');
 	const baseUrl = credentials.hostUrl as string || 'http://localhost:3000';
 	const deviceIdHeader = await getDeviceIdHeader(this, itemIndex);
 
@@ -74,7 +74,7 @@ export const executeNewsletterOperation: OperationExecutor = async function (
 			throw new NodeOperationError(this.getNode(), `Unknown newsletter operation: ${operation}`);
 	}
 
-	const response = await this.helpers.requestWithAuthentication.call(this, 'goWhatsappApi', {
+	const response = await this.helpers.requestWithAuthentication.call(this, 'goWhatsappApiMultiDevice', {
 		...requestOptions,
 		headers: deviceIdHeader,
 		json: true,

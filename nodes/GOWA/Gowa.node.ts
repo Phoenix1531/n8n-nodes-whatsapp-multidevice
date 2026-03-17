@@ -18,21 +18,21 @@ import { executeNewsletterOperation, newsletterOperations, newsletterProperties 
 
 export class Gowa implements INodeType {
 	description: INodeTypeDescription = {
-		name: 'gowa',
-		displayName: 'GOWA',
+		name: 'whatsappMultiDevice',
+		displayName: 'WhatsApp Multi-Device',
 		icon: 'file:gowa-icon.svg',
 		group: ['messaging'],
 		version: 1,
 		subtitle: '={{$parameter["resource"] + ": " + $parameter["operation"]}}',
 		description: 'Interact with Go WhatsApp Web MultiDevice API',
 		defaults: {
-			name: 'GOWA',
+			name: 'WhatsApp Multi-Device',
 		},
 		inputs: [NodeConnectionType.Main],
 		outputs: [NodeConnectionType.Main],
 		credentials: [
 			{
-				name: 'goWhatsappApi',
+				name: 'goWhatsappApiMultiDevice',
 				required: true,
 			},
 		],

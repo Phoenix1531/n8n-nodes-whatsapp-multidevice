@@ -126,7 +126,7 @@ export const executeDeviceOperation: OperationExecutor = async function (
 	operation: string,
 	itemIndex: number,
 ): Promise<any> {
-	const credentials = await this.getCredentials('goWhatsappApi');
+	const credentials = await this.getCredentials('goWhatsappApiMultiDevice');
 	const baseUrl = credentials.hostUrl as string || 'http://localhost:3000';
 
 	const requestOptions: RequestOptions = {
@@ -195,7 +195,7 @@ export const executeDeviceOperation: OperationExecutor = async function (
 			throw new NodeOperationError(this.getNode(), `Unknown device operation: ${operation}`);
 	}
 
-	const response = await this.helpers.requestWithAuthentication.call(this, 'goWhatsappApi', {
+	const response = await this.helpers.requestWithAuthentication.call(this, 'goWhatsappApiMultiDevice', {
 		...requestOptions,
 		json: true,
 	});

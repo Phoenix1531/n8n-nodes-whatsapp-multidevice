@@ -17,6 +17,15 @@ GOWA provides a comprehensive WhatsApp Web API implementation written in Go, sup
 [Credentials](#credentials)  
 [Usage](#usage)
 
+## What’s different in this version
+
+- Dynamic **Device ID override at node level**
+- Supports expressions like `{{$json.deviceId}}`
+- Enables multi-device workflows without duplicating credentials
+- Backward compatible with credential-based configuration
+
+This makes it suitable for multi-tenant and scalable WhatsApp automation workflows.
+
 ## Installation
 
 ### Option 1: Install from npm (Recommended)
