@@ -132,7 +132,7 @@ export const executeUserOperation: OperationExecutor = async function (
 	operation: string,
 	itemIndex: number,
 ): Promise<any> {
-	const credentials = await this.getCredentials('goWhatsappApiMultiDevice');
+	const credentials = await this.getCredentials('goWhatsappMultiDeviceApi');
 	const baseUrl = credentials.hostUrl as string || 'http://localhost:3000';
 	const deviceIdHeader = await getDeviceIdHeader(this, itemIndex);
 
@@ -167,7 +167,7 @@ export const executeUserOperation: OperationExecutor = async function (
 					},
 				},
 			};
-			const avatarResponse = await this.helpers.requestWithAuthentication.call(this, 'goWhatsappApiMultiDevice', {
+			const avatarResponse = await this.helpers.requestWithAuthentication.call(this, 'goWhatsappMultiDeviceApi', {
 				method: 'POST' as IHttpRequestMethods,
 				url: `${baseUrl.replace(/\/$/, '')}/user/avatar`,
 				headers: deviceIdHeader,
@@ -194,7 +194,7 @@ export const executeUserOperation: OperationExecutor = async function (
 
 		case 'changePushName':
 			const pushName = this.getNodeParameter('pushName', itemIndex) as string;
-			const pushNameResponse = await this.helpers.requestWithAuthentication.call(this, 'goWhatsappApiMultiDevice', {
+			const pushNameResponse = await this.helpers.requestWithAuthentication.call(this, 'goWhatsappMultiDeviceApi', {
 				method: 'POST' as IHttpRequestMethods,
 				url: `${baseUrl.replace(/\/$/, '')}/user/pushname`,
 				headers: deviceIdHeader,
@@ -219,7 +219,7 @@ export const executeUserOperation: OperationExecutor = async function (
 			throw new NodeOperationError(this.getNode(), `Unknown user operation: ${operation}`);
 	}
 
-	const response = await this.helpers.requestWithAuthentication.call(this, 'goWhatsappApiMultiDevice', {
+	const response = await this.helpers.requestWithAuthentication.call(this, 'goWhatsappMultiDeviceApi', {
 		...requestOptions,
 		headers: deviceIdHeader,
 		json: true,

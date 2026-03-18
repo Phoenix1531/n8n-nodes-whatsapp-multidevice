@@ -551,7 +551,7 @@ async function handleFileUpload(this: IExecuteFunctions, endpoint: string, fileP
 	const binaryData = this.helpers.assertBinaryData(itemIndex, binaryPropertyName);
 	const fileBuffer = await this.helpers.getBinaryDataBuffer(itemIndex, binaryPropertyName);
 
-	const credentials = await this.getCredentials('goWhatsappApiMultiDevice');
+	const credentials = await this.getCredentials('goWhatsappMultiDeviceApi');
 	const baseUrl = credentials.hostUrl as string || 'http://localhost:3000';
 	const fullUrl = `${baseUrl.replace(/\/$/, '')}${endpoint}`;
 	const deviceIdHeader = await getDeviceIdHeader(this, itemIndex);
@@ -599,7 +599,7 @@ async function handleFileUpload(this: IExecuteFunctions, endpoint: string, fileP
 		}
 	}
 
-	const response = await this.helpers.requestWithAuthentication.call(this, 'goWhatsappApiMultiDevice', {
+	const response = await this.helpers.requestWithAuthentication.call(this, 'goWhatsappMultiDeviceApi', {
 		method: 'POST' as IHttpRequestMethods,
 		url: fullUrl,
 		headers: deviceIdHeader,
@@ -618,7 +618,7 @@ async function handleStickerUpload(
 	const binaryData = this.helpers.assertBinaryData(itemIndex, binaryPropertyName);
 	const fileBuffer = await this.helpers.getBinaryDataBuffer(itemIndex, binaryPropertyName);
 
-	const credentials = await this.getCredentials('goWhatsappApiMultiDevice');
+	const credentials = await this.getCredentials('goWhatsappMultiDeviceApi');
 	const baseUrl = credentials.hostUrl as string || 'http://localhost:3000';
 	const fullUrl = `${baseUrl.replace(/\/$/, '')}/send/sticker`;
 	const deviceIdHeader = await getDeviceIdHeader(this, itemIndex);
@@ -644,7 +644,7 @@ async function handleStickerUpload(
 		formData.is_forwarded = 'true';
 	}
 
-	const response = await this.helpers.requestWithAuthentication.call(this, 'goWhatsappApiMultiDevice', {
+	const response = await this.helpers.requestWithAuthentication.call(this, 'goWhatsappMultiDeviceApi', {
 		method: 'POST' as IHttpRequestMethods,
 		url: fullUrl,
 		headers: deviceIdHeader,
@@ -658,7 +658,7 @@ export const executeSendOperation: OperationExecutor = async function (
 	operation: string,
 	itemIndex: number,
 ): Promise<any> {
-	const credentials = await this.getCredentials('goWhatsappApiMultiDevice');
+	const credentials = await this.getCredentials('goWhatsappMultiDeviceApi');
 	const baseUrl = credentials.hostUrl as string || 'http://localhost:3000';
 	const deviceIdHeader = await getDeviceIdHeader(this, itemIndex);
 
@@ -812,7 +812,7 @@ export const executeSendOperation: OperationExecutor = async function (
 			throw new NodeOperationError(this.getNode(), `Unknown send operation: ${operation}`);
 	}
 
-	const response = await this.helpers.requestWithAuthentication.call(this, 'goWhatsappApiMultiDevice', {
+	const response = await this.helpers.requestWithAuthentication.call(this, 'goWhatsappMultiDeviceApi', {
 		...requestOptions,
 		headers: deviceIdHeader,
 		json: true,

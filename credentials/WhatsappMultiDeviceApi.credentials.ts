@@ -5,9 +5,9 @@ import {
 	INodeProperties,
 } from 'n8n-workflow';
 
-export class GOWAApiMultiDevice implements ICredentialType {
-	name = 'goWhatsappApiMultiDevice';
-	displayName = 'GOWA API Multi-Device';
+export class WhatsappMultiDeviceApi implements ICredentialType {
+	name = 'goWhatsappMultiDeviceApi';
+	displayName = 'GOWA API Multi-Device API';
 	documentationUrl = 'https://github.com/aldinokemal/go-whatsapp-web-multidevice';
 	properties: INodeProperties[] = [
 		{

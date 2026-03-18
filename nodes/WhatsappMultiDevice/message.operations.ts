@@ -136,7 +136,7 @@ export const executeMessageOperation: OperationExecutor = async function (
 	const messageId = this.getNodeParameter('messageId', itemIndex) as string;
 	const phoneOrGroupId = this.getNodeParameter('phoneOrGroupId', itemIndex) as string;
 
-	const credentials = await this.getCredentials('goWhatsappApiMultiDevice');
+	const credentials = await this.getCredentials('goWhatsappMultiDeviceApi');
 	const baseUrl = credentials.hostUrl as string || 'http://localhost:3000';
 	const deviceIdHeader = await getDeviceIdHeader(this, itemIndex);
 
@@ -184,7 +184,7 @@ export const executeMessageOperation: OperationExecutor = async function (
 			throw new NodeOperationError(this.getNode(), `Unknown message operation: ${operation}`);
 	}
 
-	const response = await this.helpers.requestWithAuthentication.call(this, 'goWhatsappApiMultiDevice', {
+	const response = await this.helpers.requestWithAuthentication.call(this, 'goWhatsappMultiDeviceApi', {
 		...requestOptions,
 		headers: deviceIdHeader,
 		json: true,

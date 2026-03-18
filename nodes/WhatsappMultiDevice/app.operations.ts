@@ -104,7 +104,7 @@ export async function getDeviceIdHeader(context: IExecuteFunctions, itemIndex: n
 		return { 'X-Device-Id': nodeDeviceId };
 	}
 
-	const credentials = await context.getCredentials('goWhatsappApiMultiDevice');
+	const credentials = await context.getCredentials('goWhatsappMultiDeviceApi');
 	const deviceId = credentials.deviceId as string;
 	if (deviceId) {
 		return { 'X-Device-Id': deviceId };
@@ -117,7 +117,7 @@ export const executeAppOperation: OperationExecutor = async function (
 	operation: string,
 	itemIndex: number,
 ): Promise<any> {
-	const credentials = await this.getCredentials('goWhatsappApiMultiDevice');
+	const credentials = await this.getCredentials('goWhatsappMultiDeviceApi');
 	const baseUrl = credentials.hostUrl as string || 'http://localhost:3000';
 	const deviceIdHeader = await getDeviceIdHeader(this, itemIndex);
 
@@ -167,7 +167,7 @@ export const executeAppOperation: OperationExecutor = async function (
 
 	// For media operations, we need to handle binary data differently
 	if (operation === 'getMediaByPath') {
-		const response = await this.helpers.requestWithAuthentication.call(this, 'goWhatsappApiMultiDevice', {
+		const response = await this.helpers.requestWithAuthentication.call(this, 'goWhatsappMultiDeviceApi', {
 			...requestOptions,
 			encoding: 'binary',
 			returnFullResponse: true,
@@ -183,7 +183,7 @@ export const executeAppOperation: OperationExecutor = async function (
 		};
 	}
 
-	const response = await this.helpers.requestWithAuthentication.call(this, 'goWhatsappApiMultiDevice', {
+	const response = await this.helpers.requestWithAuthentication.call(this, 'goWhatsappMultiDeviceApi', {
 		...requestOptions,
 		headers: deviceIdHeader,
 		json: true,

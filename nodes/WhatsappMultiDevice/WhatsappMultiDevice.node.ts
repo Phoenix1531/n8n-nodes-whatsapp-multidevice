@@ -32,7 +32,7 @@ export class Gowa implements INodeType {
 		outputs: [NodeConnectionType.Main],
 		credentials: [
 			{
-				name: 'goWhatsappApiMultiDevice',
+				name: 'goWhatsappMultiDeviceApi',
 				required: true,
 			},
 		],
